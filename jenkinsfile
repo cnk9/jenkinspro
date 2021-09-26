@@ -1,0 +1,19 @@
+node {
+    stage('Git clone') {
+	git branch: 'main', credentialsId: '09a29ff5-155d-4899-ae87-1a7175327e94', url: 'https://github.com/cnk9/venu.git'
+	}
+	stage('clean') {
+    sh 'mvn clean'
+	}
+	stage('compile') {
+	sh 'mvn compile'
+	}
+	stage('package') {
+	sh 'mvn package'
+	}
+	stage('deploy') {
+	sh 'mvn deploy'
+	}
+    
+}
+
