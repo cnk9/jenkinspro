@@ -5,6 +5,14 @@ node {
 	stage('clean') {
     sh 'mvn clean'
 	}
+	stage('code scan') {
+	sh 'mvn sonar:sonar \
+  -Dsonar.host.url=http://34.121.91.12:9000 \
+  -Dsonar.login=bd35befb59925a1ac707d468af3b221f1e3ef5b7'
+    }
+	stage('code validation') {
+	sh 'mvn validate'
+	}
 	stage('compile') {
 	sh 'mvn compile'
 	}
